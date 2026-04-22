@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
+
+:root {
+    --bg-color: #FDF9F1;
+    /* Soft warm white / cream */
+    --primary: #FF5A79;
+    /* Bright playful pink */
+    --secondary: #38DBB9;
+    /* Bright teal */
+    --accent: #FFD166;
+    /* Sunny yellow */
+    --blue: #4A90E2;
+    /* Playful blue for tech */
+    --orange: #FF8A00;
+    /* Bright orange */
+    --text-main: #3D3D3D;
+    /* Soft black for legibility */
+    --text-mute: #6C7A89;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-main);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 209, 102, 0.4) 3px, transparent 3px);
+    background-size: 35px 35px;
+    background-color: var(--bg-color);
+    z-index: -1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-font {
+    font-family: 'Fredoka One', cursive;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+
+/* Global Nav */
+.floating-nav {
+    background: white;
+    border: 5px solid var(--text-main);
+    border-radius: 3rem;
+    box-shadow: 6px 6px 0 var(--text-main);
+    padding: 1rem 2rem;
+    margin: 2rem auto;
+    max-width: 1400px;
+}
+
+.school-brand {
+    font-family: 'Fredoka One', cursive;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.school-subbrand {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-mute);
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.nav-link {
+    font-family: 'Fredoka One', cursive;
+    color: var(--text-main) !important;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 2rem;
+    transition: all 0.2s;
+    margin: 0 0.2rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Tactile 3D Game Buttons */
+.btn-3d {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    padding: 1.2rem 2.5rem;
+    border-radius: 2rem;
+    border: 4px solid var(--text-main) !important;
+    color: var(--text-main) !important;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.1s ease-in-out;
+    position: relative;
+    top: 0;
+    cursor: pointer;
+}
+
+.btn-3d:hover {
+    filter: brightness(1.1);
+}
+
+.btn-3d:active {
+    top: 6px;
+    box-shadow: 0 0px 0 var(--text-main) !important;
+}
+
+.btn-html {
+    background: #FF7B72;
+    box-shadow: 0 6px 0 var(--text-main);
+}
+
+.btn-python {
+    background: #82C4FF;
+    box-shadow: 0 6px 0 var(--text-main);
+}
+
+.btn-scratch {
+    background: var(--accent);
+    box-shadow: 0 6px 0 var(--text-main);
+}
+
+.btn-cpp {
+    background: #A094FF;
+    box-shadow: 0 6px 0 var(--text-main);
+}
+
+.btn-java {
+    background: #FF9B54;
+    box-shadow: 0 6px 0 var(--text-main);
+}
+
+/* Playful Card Containers */
+.organic-card {
+    background: white;
+    border: 5px solid var(--text-main);
+    border-radius: 2.5rem;
+    padding: 3rem;
+    position: relative;
+    box-shadow: 8px 8px 0 var(--text-main);
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.organic-card.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 12px 16px 0 var(--text-main);
+}
+
+/* Base App Wrapper Limits */
+.container {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    background: var(--secondary);
+    border: 5px solid var(--text-main);
+    border-radius: 3rem;
+    box-shadow: 8px 8px 0 var(--text-main);
+    padding: 6rem 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer */
+.chunky-footer {
+    background: var(--text-main);
+    color: white;
+    padding: 5rem 1rem 3rem 1rem;
+    border-radius: 4rem 4rem 0 0;
+    margin-top: 7rem;
+    border-top: 8px solid var(--primary);
+    width: 100%;
+}
+
+.footer-badge {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 2.5rem;
+    padding: 2rem;
+    height: 100%;
+}
+
+.footer-text-brand {
+    color: var(--accent);
+    font-family: 'Fredoka One', cursive;
+}
+
+/* Channels / Students etc */
+.student-bubble {
+    background: white;
+    border: 4px solid var(--secondary);
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    box-shadow: 4px 4px 0 var(--secondary);
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.student-bubble:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 6px 8px 0 var(--text-main);
+}
+
+/* Fluid Native Iframe Container Overlay! */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 82%;
+    /* Ensures strict aspect ratio mapping */
+    height: 0;
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 1rem;
+}
+
+/* 📱 MOBILE RESPONSIVENESS MEDIA QUERIES */
+@media (max-width: 768px) {
+
+    /* Typographic Scaling */
+    .display-2 {
+        font-size: 2.5rem;
+        -webkit-text-stroke: 1px #3D3D3D !important;
+    }
+
+    .display-3 {
+        font-size: 2rem;
+        -webkit-text-stroke: 1px #3D3D3D !important;
+    }
+
+    .display-4 {
+        font-size: 1.8rem;
+        -webkit-text-stroke: 1px #3D3D3D !important;
+    }
+
+    h2.brand-font {
+        font-size: 1.5rem !important;
+    }
+
+    /* Layout & Spacing */
+    .hero {
+        padding: 3rem 1rem;
+        border-radius: 2rem;
+        box-shadow: 4px 4px 0 var(--text-main);
+    }
+
+    .organic-card {
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        box-shadow: 4px 4px 0 var(--text-main);
+        border-width: 4px;
+    }
+
+    /* Navbar / Buttons */
+    .floating-nav {
+        padding: 0.5rem 1rem;
+        border-radius: 1.5rem;
+        margin: 1rem auto;
+        box-shadow: 4px 4px 0 var(--text-main);
+        border-width: 4px;
+    }
+
+    .school-brand {
+        font-size: 1rem;
+    }
+
+    .school-subbrand {
+        font-size: 0.8rem;
+    }
+
+    .btn-3d {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border-width: 3px !important;
+        box-shadow: 0 4px 0 var(--text-main) !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-3d:active {
+        top: 4px;
+        box-shadow: 0 0 0 var(--text-main) !important;
+    }
+
+    /* Target specific showcase limits */
+    .scratch-embed-card,
+    .project-embed {
+        padding: 1rem;
+        border-width: 3px;
+        border-radius: 1.5rem;
+    }
+
+    /* Students / Footers */
+    .student-bubble {
+        padding: 1rem;
+        font-size: 0.9rem;
+        border-width: 3px;
+        box-shadow: 2px 2px 0 var(--secondary);
+    }
+
+    .chunky-footer {
+        padding: 3rem 1rem;
+        border-radius: 2rem 2rem 0 0;
+        margin-top: 3rem;
+        border-top-width: 5px;
+    }
+
+    .footer-badge {
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+    }
+
+    /* Arcade bounds */
+    .arcade-machine {
+        padding: 1rem;
+        border-radius: 2rem 2rem 1rem 1rem;
+        border-width: 4px;
+        box-shadow: 6px 6px 0 var(--text-main);
+    }
+
+    .arcade-screen-bezel {
+        padding: 0.25rem;
+        border-radius: 0.5rem;
+        border-width: 4px;
+    }
+
+    .arcade-marquee {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+    }
+}
