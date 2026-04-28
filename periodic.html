@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build the Periodic Table | Skillsprout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=7">
+</head>
+
+<body class="skillsprout-page game-page">
+    <div class="container position-relative z-3 px-3">
+        <nav class="navbar navbar-expand-xl navbar-light floating-nav mt-4" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex flex-column" href="index.html">
+                    <span class="school-brand"><i class="fa-solid fa-seedling mx-1"></i> Skillsprout</span>
+                    <span class="school-subbrand">Build the Periodic Table</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                        <a class="nav-link" href="geometry.html"><i class="fa-solid fa-draw-polygon"></i> Geometry</a>
+                        <a class="nav-link active" href="periodic.html"><i class="fa-solid fa-flask"></i> Periodic
+                            Table</a>
+                        <a class="nav-link" href="geography.html"><i class="fa-solid fa-earth-americas"></i>
+                            Geography</a>
+                        <a class="nav-link" href="snake.html"><i class="fa-solid fa-gamepad"></i> Snake</a>
+                        <a class="nav-link" href="scratch.html"><i class="fa-solid fa-puzzle-piece"></i> Scratch</a>
+                        <a class="nav-link" href="page2.html"><i class="fa-solid fa-tv"></i> Channels</a>
+                        <a class="nav-link" href="videos.html"><i class="fa-solid fa-film"></i> Videos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="game-main periodic-main">
+        <div class="container-fluid px-3 px-lg-4">
+            <a class="back-link periodic-back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back
+                Home</a>
+
+            <section class="sprout-card periodic-shell" aria-labelledby="periodic-title">
+                <div class="periodic-header text-center">
+                    <p class="hero-kicker">Chemistry builder</p>
+                    <h1 id="periodic-title" class="game-title">Build the Periodic Table 🧪</h1>
+                    <p id="elementCount" class="score-pill">Elements added: 0 / 71</p>
+                </div>
+
+                <div class="periodic-controls" role="search">
+                    <label class="visually-hidden" for="input">Enter element</label>
+                    <input type="text" id="input" class="sprout-input" placeholder="Enter element name or symbol"
+                        autocomplete="off">
+                    <button class="sprout-btn sprout-btn-primary" type="button" onclick="addElement()">
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+                    <button class="sprout-btn sprout-btn-secondary" type="button" onclick="resetTable()">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Reset
+                    </button>
+                </div>
+
+                <p id="feedback" class="feedback-message text-center" aria-live="polite"></p>
+
+                <div class="periodic-scroll" aria-label="Scrollable periodic table">
+                    <div id="table"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const elements = [
+            // Period 1
+            { symbol: "H", name: "Hydrogen", atomic: 1, row: 1, col: 1 },
+            { symbol: "He", name: "Helium", atomic: 2, row: 1, col: 18 },
+
+            // Period 2
+            { symbol: "Li", name: "Lithium", atomic: 3, row: 2, col: 1 },
+            { symbol: "Be", name: "Beryllium", atomic: 4, row: 2, col: 2 },
+            { symbol: "B", name: "Boron", atomic: 5, row: 2, col: 13 },
+            { symbol: "C", name: "Carbon", atomic: 6, row: 2, col: 14 },
+            { symbol: "N", name: "Nitrogen", atomic: 7, row: 2, col: 15 },
+            { symbol: "O", name: "Oxygen", atomic: 8, row: 2, col: 16 },
+            { symbol: "F", name: "Fluorine", atomic: 9, row: 2, col: 17 },
+            { symbol: "Ne", name: "Neon", atomic: 10, row: 2, col: 18 },
+
+            // Period 3
+            { symbol: "Na", name: "Sodium", atomic: 11, row: 3, col: 1 },
+            { symbol: "Mg", name: "Magnesium", atomic: 12, row: 3, col: 2 },
+            { symbol: "Al", name: "Aluminium", atomic: 13, row: 3, col: 13 },
+            { symbol: "Si", name: "Silicon", atomic: 14, row: 3, col: 14 },
+            { symbol: "P", name: "Phosphorus", atomic: 15, row: 3, col: 15 },
+            { symbol: "S", name: "Sulfur", atomic: 16, row: 3, col: 16 },
+            { symbol: "Cl", name: "Chlorine", atomic: 17, row: 3, col: 17 },
+            { symbol: "Ar", name: "Argon", atomic: 18, row: 3, col: 18 },
+
+            // Period 4
+            { symbol: "K", name: "Potassium", atomic: 19, row: 4, col: 1 },
+            { symbol: "Ca", name: "Calcium", atomic: 20, row: 4, col: 2 },
+            { symbol: "Sc", name: "Scandium", atomic: 21, row: 4, col: 3 },
+            { symbol: "Ti", name: "Titanium", atomic: 22, row: 4, col: 4 },
+            { symbol: "V", name: "Vanadium", atomic: 23, row: 4, col: 5 },
+            { symbol: "Cr", name: "Chromium", atomic: 24, row: 4, col: 6 },
+            { symbol: "Mn", name: "Manganese", atomic: 25, row: 4, col: 7 },
+            { symbol: "Fe", name: "Iron", atomic: 26, row: 4, col: 8 },
+            { symbol: "Co", name: "Cobalt", atomic: 27, row: 4, col: 9 },
+            { symbol: "Ni", name: "Nickel", atomic: 28, row: 4, col: 10 },
+            { symbol: "Cu", name: "Copper", atomic: 29, row: 4, col: 11 },
+            { symbol: "Zn", name: "Zinc", atomic: 30, row: 4, col: 12 },
+            { symbol: "Ga", name: "Gallium", atomic: 31, row: 4, col: 13 },
+            { symbol: "Ge", name: "Germanium", atomic: 32, row: 4, col: 14 },
+            { symbol: "As", name: "Arsenic", atomic: 33, row: 4, col: 15 },
+            { symbol: "Se", name: "Selenium", atomic: 34, row: 4, col: 16 },
+            { symbol: "Br", name: "Bromine", atomic: 35, row: 4, col: 17 },
+            { symbol: "Kr", name: "Krypton", atomic: 36, row: 4, col: 18 },
+
+            // Period 5
+            { symbol: "Rb", name: "Rubidium", atomic: 37, row: 5, col: 1 },
+            { symbol: "Sr", name: "Strontium", atomic: 38, row: 5, col: 2 },
+            { symbol: "Y", name: "Yttrium", atomic: 39, row: 5, col: 3 },
+            { symbol: "Zr", name: "Zirconium", atomic: 40, row: 5, col: 4 },
+            { symbol: "Nb", name: "Niobium", atomic: 41, row: 5, col: 5 },
+            { symbol: "Mo", name: "Molybdenum", atomic: 42, row: 5, col: 6 },
+            { symbol: "Tc", name: "Technetium", atomic: 43, row: 5, col: 7 },
+            { symbol: "Ru", name: "Ruthenium", atomic: 44, row: 5, col: 8 },
+            { symbol: "Rh", name: "Rhodium", atomic: 45, row: 5, col: 9 },
+            { symbol: "Pd", name: "Palladium", atomic: 46, row: 5, col: 10 },
+            { symbol: "Ag", name: "Silver", atomic: 47, row: 5, col: 11 },
+            { symbol: "Cd", name: "Cadmium", atomic: 48, row: 5, col: 12 },
+            { symbol: "In", name: "Indium", atomic: 49, row: 5, col: 13 },
+            { symbol: "Sn", name: "Tin", atomic: 50, row: 5, col: 14 },
+            { symbol: "Sb", name: "Antimony", atomic: 51, row: 5, col: 15 },
+            { symbol: "Te", name: "Tellurium", atomic: 52, row: 5, col: 16 },
+            { symbol: "I", name: "Iodine", atomic: 53, row: 5, col: 17 },
+            { symbol: "Xe", name: "Xenon", atomic: 54, row: 5, col: 18 },
+
+            // Period 6 (main row only)
+            { symbol: "Cs", name: "Caesium", atomic: 55, row: 6, col: 1 },
+            { symbol: "Ba", name: "Barium", atomic: 56, row: 6, col: 2 },
+            { symbol: "Hf", name: "Hafnium", atomic: 72, row: 6, col: 4 },
+            { symbol: "Ta", name: "Tantalum", atomic: 73, row: 6, col: 5 },
+            { symbol: "W", name: "Tungsten", atomic: 74, row: 6, col: 6 },
+            { symbol: "Re", name: "Rhenium", atomic: 75, row: 6, col: 7 },
+            { symbol: "Os", name: "Osmium", atomic: 76, row: 6, col: 8 },
+            { symbol: "Ir", name: "Iridium", atomic: 77, row: 6, col: 9 },
+            { symbol: "Pt", name: "Platinum", atomic: 78, row: 6, col: 10 },
+            { symbol: "Au", name: "Gold", atomic: 79, row: 6, col: 11 },
+            { symbol: "Hg", name: "Mercury", atomic: 80, row: 6, col: 12 },
+            { symbol: "Tl", name: "Thallium", atomic: 81, row: 6, col: 13 },
+            { symbol: "Pb", name: "Lead", atomic: 82, row: 6, col: 14 },
+            { symbol: "Bi", name: "Bismuth", atomic: 83, row: 6, col: 15 },
+            { symbol: "Po", name: "Polonium", atomic: 84, row: 6, col: 16 },
+            { symbol: "At", name: "Astatine", atomic: 85, row: 6, col: 17 },
+            { symbol: "Rn", name: "Radon", atomic: 86, row: 6, col: 18 }
+        ];
+
+        const table = document.getElementById("table");
+        const feedback = document.getElementById("feedback");
+        const inputEl = document.getElementById("input");
+        const elementCount = document.getElementById("elementCount");
+
+        for (let row = 1; row <= 9; row++) {
+            for (let col = 1; col <= 18; col++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                cell.dataset.row = row;
+                cell.dataset.col = col;
+                table.appendChild(cell);
+            }
+        }
+
+        function setFeedback(message, type) {
+            feedback.innerText = message;
+            feedback.className = "feedback-message text-center " + type;
+        }
+
+        function updateCount() {
+            const added = document.querySelectorAll("#table .cell.filled").length;
+            elementCount.innerText = "Elements added: " + added + " / " + elements.length;
+        }
+
+        function addElement() {
+            const input = inputEl.value.toLowerCase().trim();
+
+            if (!input) {
+                setFeedback("Enter an element name or symbol.", "feedback-warn");
+                return;
+            }
+
+            const el = elements.find(e =>
+                e.name.toLowerCase() === input ||
+                e.symbol.toLowerCase() === input
+            );
+
+            if (!el) {
+                setFeedback("Element not found.", "feedback-bad");
+                return;
+            }
+
+            const cell = document.querySelector(
+                `[data-row="${el.row}"][data-col="${el.col}"]`
+            );
+
+            if (cell.innerHTML !== "") {
+                setFeedback(el.name + " is already added.", "feedback-warn");
+                inputEl.value = "";
+                inputEl.focus();
+                return;
+            }
+
+            cell.innerHTML = `
+                <div class="atomic">${el.atomic}</div>
+                <div class="symbol">${el.symbol}</div>
+            `;
+
+            cell.classList.add("filled");
+            inputEl.value = "";
+            inputEl.focus();
+            updateCount();
+            setFeedback("Added " + el.name + "!", "feedback-good");
+        }
+
+        function resetTable() {
+            document.querySelectorAll("#table .cell").forEach((cell) => {
+                cell.innerHTML = "";
+                cell.classList.remove("filled");
+            });
+
+            inputEl.value = "";
+            inputEl.focus();
+            updateCount();
+            setFeedback("Table reset. Start building again.", "feedback-warn");
+        }
+
+        inputEl.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                addElement();
+            }
+        });
+
+        updateCount();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

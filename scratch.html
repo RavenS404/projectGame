@@ -4,142 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scratch Showcase</title>
+    <title>Scratch Showcase | Skillsprout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=2">
-    <style>
-        .scratch-embed-card {
-            background: white;
-            border: 5px solid var(--text-main);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            box-shadow: 8px 8px 0 var(--text-main);
-            transition: transform 0.3s;
-            overflow: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .scratch-embed-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 12px 12px 0 var(--text-main);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 
-<body>
+<body class="skillsprout-page legacy-page">
 
     <!-- Unified Organic Navbar -->
     <div class="container position-relative z-3 px-3">
-        <nav class="navbar navbar-expand-lg floating-nav mt-4">
+        <nav class="navbar navbar-expand-xl navbar-light floating-nav mt-4" aria-label="Main navigation">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex flex-column" href="index.html">
-                    <span class="school-brand"><i class="fa-solid fa-rocket mx-1"></i> A Space for Learning and
-                        Fun</span>
-                    <span class="school-subbrand"><i class="fa-solid fa-school mx-1"></i> Future V. International
-                        Schools</span>
+                    <span class="school-brand"><i class="fa-solid fa-seedling mx-1"></i> Skillsprout</span>
+                    <span class="school-subbrand">Scratch Showcase</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navMenu">
                     <div class="navbar-nav">
                         <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-                        <a class="nav-link" href="snake.html"><i class="fa-solid fa-gamepad"></i> Snake Game</a>
+                        <a class="nav-link" href="geometry.html"><i class="fa-solid fa-draw-polygon"></i> Geometry</a>
+                        <a class="nav-link" href="periodic.html"><i class="fa-solid fa-flask"></i> Periodic Table</a>
+                        <a class="nav-link" href="geography.html"><i class="fa-solid fa-earth-americas"></i>
+                            Geography</a>
+                        <a class="nav-link" href="snake.html"><i class="fa-solid fa-gamepad"></i> Snake</a>
                         <a class="nav-link active" href="scratch.html"><i class="fa-solid fa-puzzle-piece"></i>
                             Scratch</a>
-                        <a class="nav-link" href="page2.html"><i class="fa-brands fa-youtube"></i> Channels</a>
+                        <a class="nav-link" href="page2.html"><i class="fa-solid fa-tv"></i> Channels</a>
+                        <a class="nav-link" href="videos.html"><i class="fa-solid fa-film"></i> Videos</a>
                     </div>
                 </div>
             </div>
         </nav>
     </div>
 
-    <!-- Main Content -->
-    <div class="container text-center mb-5 mt-5">
-        <h1 class="display-3 brand-font mb-4" style="color: var(--primary); -webkit-text-stroke: 2px #3D3D3D;">Scratch
-            Showcase! <i class="fa-solid fa-puzzle-piece"></i></h1>
-        <p class="fs-4 fw-bold text-muted mb-5">Check out these highly interactive and fun projects created by our
-            talented students!</p>
+    <main class="content-main">
+        <div class="container">
+            <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back Home</a>
 
-        <div class="row row-cols-1 row-cols-lg-2 g-5 justify-content-center">
-            <div class="col">
-                <div class="scratch-embed-card">
-                    <h3 class="brand-font mb-4" style="color: var(--secondary); font-size: 2rem;">Game 1 <i
-                            class="fa-solid fa-gamepad mx-2"></i></h3>
+            <section class="page-header text-center">
+                <p class="hero-kicker">Student projects</p>
+                <h1 class="section-title">Scratch Game 🎮</h1>
+                <p class="page-subtitle">Play the interactive Scratch project below!</p>
+            </section>
+
+            <section class="scratch-feature" aria-labelledby="featured-scratch-title">
+                <article class="sprout-card scratch-feature-card">
+                    <div class="scratch-feature-copy">
+                        <p class="hero-kicker">Featured project</p>
+                        <h2 id="featured-scratch-title">Scratch Game</h2>
+                    </div>
+                    <div class="scratch-embed-wrapper">
+                        <iframe src="https://scratch.mit.edu/projects/1313345877/embed" allowtransparency="true"
+                            frameborder="0" scrolling="no" allowfullscreen></iframe>
+                    </div>
+                </article>
+            </section>
+
+            <section class="page-header text-center scratch-showcase-heading">
+                <p class="hero-kicker">More student projects</p>
+                <h2 class="section-title-small">Scratch Showcase 🎨</h2>
+                <p class="page-subtitle">Explore more interactive projects created by talented students.</p>
+            </section>
+
+            <section class="scratch-grid" aria-label="Scratch projects">
+                <article class="sprout-card scratch-embed-card">
+                    <h2><i class="fa-solid fa-gamepad"></i> Game 1</h2>
                     <div class="iframe-container">
                         <iframe src="https://scratch.mit.edu/projects/1272857203/embed" allowtransparency="true"
                             frameborder="0" scrolling="no" allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="scratch-embed-card">
-                    <h3 class="brand-font mb-4" style="color: var(--accent); font-size: 2rem;">Game 2 <i
-                            class="fa-solid fa-gamepad mx-2"></i></h3>
+                </article>
+
+                <article class="sprout-card scratch-embed-card">
+                    <h2><i class="fa-solid fa-gamepad"></i> Game 2</h2>
                     <div class="iframe-container">
                         <iframe src="https://scratch.mit.edu/projects/1272852100/embed" allowtransparency="true"
                             frameborder="0" scrolling="no" allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="scratch-embed-card">
-                    <h3 class="brand-font mb-4" style="color: var(--blue); font-size: 2rem;">Game 3 <i
-                            class="fa-solid fa-gamepad mx-2"></i></h3>
+                </article>
+
+                <article class="sprout-card scratch-embed-card">
+                    <h2><i class="fa-solid fa-gamepad"></i> Game 3</h2>
                     <div class="iframe-container">
                         <iframe src="https://scratch.mit.edu/projects/1272853302/embed" allowtransparency="true"
                             frameborder="0" scrolling="no" allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="scratch-embed-card">
-                    <h3 class="brand-font mb-4" style="color: var(--primary); font-size: 2rem;">Game 4 <i
-                            class="fa-solid fa-gamepad mx-2"></i></h3>
+                </article>
+
+                <article class="sprout-card scratch-embed-card">
+                    <h2><i class="fa-solid fa-gamepad"></i> Game 4</h2>
                     <div class="iframe-container">
                         <iframe src="https://scratch.mit.edu/projects/1272852366/embed" allowtransparency="true"
                             frameborder="0" scrolling="no" allowfullscreen></iframe>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <!-- Unified Chunky Footer -->
-    <footer class="chunky-footer text-center w-100">
-        <div class="container-fluid overflow-hidden px-4">
-            <h2 class="mb-5 footer-text-brand display-6">Special Thanks To Our Amazing Leaders! <i
-                    class="fa-solid fa-medal mx-2"></i></h2>
-            <div class="row justify-content-center g-4 mb-5">
-                <div class="col-12 col-md-5">
-                    <div class="footer-badge">
-                        <p class="mb-2 fs-5 fw-bold text-white-50"><i class="fa-solid fa-chalkboard-user mx-2"></i>
-                            Guide Teacher</p>
-                        <p class="mb-0 fs-2 footer-text-brand">Elham Anwer</p>
-                    </div>
+    <footer class="sprout-footer sprout-footer-panel text-center">
+        <div class="container">
+            <div class="sprout-card acknowledgement-card">
+                <h2 class="section-title-small">Special Thanks</h2>
+                <div class="thanks-grid">
+                    <p><i class="fa-solid fa-chalkboard-user"></i> Guide Teacher: <strong>Elham Anwer</strong></p>
+                    <p><i class="fa-solid fa-user-tie"></i> School Principal: <strong>Seham Al-Qahtani</strong></p>
                 </div>
-                <div class="col-12 col-md-5">
-                    <div class="footer-badge">
-                        <p class="mb-2 fs-5 fw-bold text-white-50"><i class="fa-solid fa-user-tie mx-2"></i> School
-                            Principal</p>
-                        <p class="mb-0 fs-2 footer-text-brand">Seham Al-Qahtani</p>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 mt-5 py-4 border-top w-100"
-                style="border-color: rgba(255,255,255,0.2) !important;">
-                <div class="fs-5 fw-bold">
-                    <i class="fa-solid fa-phone mx-2"></i> <a href="tel:0537091111"
-                        class="text-white text-decoration-none">0537091111</a> | <a href="tel:0172261122"
-                        class="text-white text-decoration-none">0172261122</a>
-                </div>
-                <div class="fs-5 fw-bold">
-                    <i class="fa-brands fa-twitter text-info mx-2"></i> <a href="https://twitter.com/mwahibeduc"
-                        target="_blank" class="footer-text-brand text-decoration-none">@mwahibeduc</a>
-                </div>
+                <p class="contact-line">
+                    <i class="fa-solid fa-phone"></i>
+                    <a href="tel:0537091111">0537091111</a> |
+                    <a href="tel:0172261122">0172261122</a>
+                    <span><i class="fa-brands fa-twitter"></i> <a href="https://twitter.com/mwahibeduc"
+                            target="_blank" rel="noopener">@mwahibeduc</a></span>
+                </p>
             </div>
         </div>
     </footer>

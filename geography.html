@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Quiz | Skillsprout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=7">
+</head>
+
+<body class="skillsprout-page game-page">
+    <div class="container position-relative z-3 px-3">
+        <nav class="navbar navbar-expand-xl navbar-light floating-nav mt-4" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex flex-column" href="index.html">
+                    <span class="school-brand"><i class="fa-solid fa-seedling mx-1"></i> Skillsprout</span>
+                    <span class="school-subbrand">Geography Quiz</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                        <a class="nav-link" href="geometry.html"><i class="fa-solid fa-draw-polygon"></i> Geometry</a>
+                        <a class="nav-link" href="periodic.html"><i class="fa-solid fa-flask"></i> Periodic Table</a>
+                        <a class="nav-link active" href="geography.html"><i class="fa-solid fa-earth-americas"></i>
+                            Geography</a>
+                        <a class="nav-link" href="snake.html"><i class="fa-solid fa-gamepad"></i> Snake</a>
+                        <a class="nav-link" href="scratch.html"><i class="fa-solid fa-puzzle-piece"></i> Scratch</a>
+                        <a class="nav-link" href="page2.html"><i class="fa-solid fa-tv"></i> Channels</a>
+                        <a class="nav-link" href="videos.html"><i class="fa-solid fa-film"></i> Videos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="game-main">
+        <div class="container">
+            <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back Home</a>
+
+            <section class="sprout-card game-shell text-center" aria-labelledby="geography-title">
+                <p class="hero-kicker">Capital cities</p>
+                <h1 id="geography-title" class="game-title">Geography Quiz 🌍</h1>
+
+                <div id="score" class="score-pill">Score: 0</div>
+                <h2 id="question" class="question-text">Loading...</h2>
+
+                <label class="form-label fw-bold" for="answer">Country</label>
+                <input type="text" id="answer" class="sprout-input" placeholder="Enter country" autocomplete="off">
+
+                <div class="game-actions">
+                    <button class="sprout-btn sprout-btn-primary" type="button" onclick="submitAnswer()">
+                        <i class="fa-solid fa-check"></i>
+                        Submit
+                    </button>
+                </div>
+
+                <div id="feedback" class="feedback-message" aria-live="polite"></div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            ["Washington, D.C.", "United States"],
+            ["Beijing", "China"],
+            ["Moscow", "Russia"],
+            ["London", "United Kingdom"],
+            ["Berlin", "Germany"],
+            ["Paris", "France"],
+            ["Tokyo", "Japan"],
+            ["New Delhi", "India"],
+            ["Brasília", "Brazil"],
+            ["Ottawa", "Canada"],
+            ["Canberra", "Australia"],
+            ["Rome", "Italy"],
+            ["Madrid", "Spain"],
+            ["Seoul", "South Korea"],
+            ["Pretoria", "South Africa"],
+            ["Riyadh", "Saudi Arabia"],
+            ["Abu Dhabi", "United Arab Emirates"],
+            ["Doha", "Qatar"],
+            ["Kuwait City", "Kuwait"],
+            ["Manama", "Bahrain"],
+            ["Muscat", "Oman"],
+            ["Cairo", "Egypt"],
+            ["Amman", "Jordan"],
+            ["Beirut", "Lebanon"],
+            ["Damascus", "Syria"],
+            ["Rabat", "Morocco"],
+            ["Algiers", "Algeria"],
+            ["Tunis", "Tunisia"],
+            ["Khartoum", "Sudan"]
+        ];
+
+        let current;
+        let score = 0;
+        let waitingForNext = false;
+
+        function newQuestion() {
+            current = questions[Math.floor(Math.random() * questions.length)];
+            document.getElementById("question").innerText = "Capital: " + current[0];
+            document.getElementById("answer").value = "";
+            document.getElementById("answer").focus();
+            waitingForNext = false;
+        }
+
+        function submitAnswer() {
+            if (waitingForNext) {
+                return;
+            }
+
+            const input = document.getElementById("answer").value.trim().toLowerCase();
+            const correct = current[1].toLowerCase();
+            const feedback = document.getElementById("feedback");
+
+            waitingForNext = true;
+
+            if (input === correct) {
+                score++;
+                feedback.innerText = "Correct ✅";
+                feedback.className = "feedback-message feedback-good";
+            } else {
+                feedback.innerText = "Wrong ❌ (" + current[1] + ")";
+                feedback.className = "feedback-message feedback-bad";
+            }
+
+            document.getElementById("score").innerText = "Score: " + score;
+
+            setTimeout(() => {
+                feedback.innerText = "";
+                feedback.className = "feedback-message";
+                newQuestion();
+            }, 1000);
+        }
+
+        document.getElementById("answer").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                submitAnswer();
+            }
+        });
+
+        newQuestion();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

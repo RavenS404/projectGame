@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Area Game | Skillsprout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=7">
+</head>
+
+<body class="skillsprout-page game-page">
+    <div class="container position-relative z-3 px-3">
+        <nav class="navbar navbar-expand-xl navbar-light floating-nav mt-4" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex flex-column" href="index.html">
+                    <span class="school-brand"><i class="fa-solid fa-seedling mx-1"></i> Skillsprout</span>
+                    <span class="school-subbrand">Geometry Area Game</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                        <a class="nav-link active" href="geometry.html"><i class="fa-solid fa-draw-polygon"></i>
+                            Geometry</a>
+                        <a class="nav-link" href="periodic.html"><i class="fa-solid fa-flask"></i> Periodic Table</a>
+                        <a class="nav-link" href="geography.html"><i class="fa-solid fa-earth-americas"></i>
+                            Geography</a>
+                        <a class="nav-link" href="snake.html"><i class="fa-solid fa-gamepad"></i> Snake</a>
+                        <a class="nav-link" href="scratch.html"><i class="fa-solid fa-puzzle-piece"></i> Scratch</a>
+                        <a class="nav-link" href="page2.html"><i class="fa-solid fa-tv"></i> Channels</a>
+                        <a class="nav-link" href="videos.html"><i class="fa-solid fa-film"></i> Videos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <main class="game-main">
+        <div class="container">
+            <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back Home</a>
+
+            <section class="sprout-card game-shell geometry-shell text-center" aria-labelledby="geometry-title">
+                <p class="hero-kicker">Practice area formulas</p>
+                <h1 id="geometry-title" class="game-title">Geometry Area Game 📐</h1>
+
+                <div class="score-pill" id="score">Score: 0</div>
+
+                <p id="question" class="question-text"></p>
+
+                <div class="shape-stage" aria-live="polite">
+                    <div id="shapeBox" class="shape"></div>
+                </div>
+
+                <label class="form-label fw-bold" for="answer">Your answer</label>
+                <input type="number" id="answer" class="sprout-input" placeholder="Enter area" step="0.01">
+
+                <div class="game-actions">
+                    <button class="sprout-btn sprout-btn-primary" type="button" onclick="check()">
+                        <i class="fa-solid fa-check"></i>
+                        Check
+                    </button>
+                    <button class="sprout-btn sprout-btn-secondary" type="button" onclick="next()">
+                        <i class="fa-solid fa-forward"></i>
+                        Next Shape
+                    </button>
+                </div>
+
+                <p id="result" class="feedback-message" aria-live="polite"></p>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        let score = 0;
+        let correct = 0;
+        let currentShape = "";
+        let answeredCorrectly = false;
+
+        let shapes = ["rectangle", "square", "circle"];
+
+        function next() {
+            let shape = shapes[Math.floor(Math.random() * shapes.length)];
+            let box = document.getElementById("shapeBox");
+
+            document.getElementById("result").innerText = "";
+            document.getElementById("result").className = "feedback-message";
+            document.getElementById("answer").value = "";
+            answeredCorrectly = false;
+            currentShape = shape;
+
+            if (shape === "rectangle") {
+                let l = 10;
+                let w = 6;
+                correct = l * w;
+
+                box.className = "shape rectangle";
+                document.getElementById("question").innerText =
+                    "Rectangle: length 10, width 6";
+            }
+
+            else if (shape === "square") {
+                let s = 8;
+                correct = s * s;
+
+                box.className = "shape square";
+                document.getElementById("question").innerText =
+                    "Square: side 8";
+            }
+
+            else {
+                let r = 5;
+                correct = Number((3.14 * r * r).toFixed(2));
+
+                box.className = "shape circle";
+                document.getElementById("question").innerText =
+                    "Circle: radius 5 (use 3.14)";
+            }
+
+            document.getElementById("answer").focus();
+        }
+
+        function check() {
+            let result = document.getElementById("result");
+            let answerEl = document.getElementById("answer");
+            let rawAnswer = answerEl.value.trim();
+            let user = Number(rawAnswer);
+
+            if (rawAnswer === "" || Number.isNaN(user)) {
+                result.innerText = "Enter an area first.";
+                result.className = "feedback-message feedback-warn";
+                return;
+            }
+
+            let isCorrect = currentShape === "circle"
+                ? Math.abs(user - correct) <= 0.01
+                : user === correct;
+
+            if (isCorrect) {
+                result.innerText = "Correct 🎉";
+                result.className = "feedback-message feedback-good";
+
+                if (!answeredCorrectly) {
+                    score++;
+                    answeredCorrectly = true;
+                }
+            } else {
+                result.innerText = "Wrong ❌ Answer: " + correct;
+                result.className = "feedback-message feedback-bad";
+            }
+
+            document.getElementById("score").innerText = "Score: " + score;
+        }
+
+        document.getElementById("answer").addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                check();
+            }
+        });
+
+        next();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
